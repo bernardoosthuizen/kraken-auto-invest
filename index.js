@@ -60,7 +60,7 @@ async function wait() {
 					ordertype: 'market',
 					volume,
 				});
-
+				console.log(result);
 				console.log('You just bought' + volume + 'of' + pair);
 			} catch (error) {
 				console.error(error);
