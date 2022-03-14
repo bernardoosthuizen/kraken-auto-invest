@@ -9,8 +9,8 @@ const kraken = new KrakenClient(key, secret);
 
 // Add the coins to invest in here
 const coins = [
-    {ticker: 'AVAX', amount: 100},
-    {ticker: 'KAVA', amount: 100}
+    {ticker: 'AVAXUSD', amount: 100},
+    {ticker: 'KAVAUSD', amount: 100}
 ]
 
  
@@ -22,25 +22,54 @@ function getRequiredBalance() {
 	return requiredBalance;
 }
 
+// Function to delay actions - avoid hitting API rate call limit
+async function wait() {
+	return new Promise((resolve) => setTimeout(resolve, 3000))
+}
+
 (async () => {
 
 	// Save my USD balance
 	const usdBalance = Number((await kraken.api('Balance')).result.ZUSD);
 
-	// Check how much USD we need
+	// Check how much USD we need to buy our selected coins
 	const requiredBalance = Number(getRequiredBalance());
-	
-	// Check if you have enough money to buy your chosen coins
-	if (usdBalance > requiredBalance) {
-		console.log("you are rich")
-	} 
-	else {
-		console.log("You are poor")
-	}
-    
 
 	// Get Ticker Info
-	// console.log(await kraken.api('Ticker', { pair : 'XXBTZUSD' }));
+	const tickerInfo = await kraken.api('Ticker', { pair : coins.map(coin => coin.ticker).join(',') });
+
+	// Add current prices to COINS array
+	coins.forEach(coin => {
+		coin.currentPrice = parseFloat(tickerInfo.result[coin.ticker].a[0])
+	})
 
 	
+	
+	//Check if you have enough money to buy your chosen coins
+	if (usdBalance >= requiredBalance) {
+		// Buy your coins
+		for(const coin of coins) {
+			await wait();
+
+			try {
+				const volume = coin.amount / coin.currentPrice;
+
+				const result = await kraken.api('AddOrder', { 
+					pair : coin.ticker,
+					type: 'buy',
+					ordertype: 'market',
+					volume,
+				});
+
+				console.log('You just bought' + volume + 'of' + pair);
+			} catch (error) {
+				console.error(error);
+			}
+			
+		}
+	} 
+	else {
+		// Do not buy - notify my somehow
+		console.error("You are too poor")
+	}
 })();
