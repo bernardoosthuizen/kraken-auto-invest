@@ -1,0 +1,27 @@
+{
+  "name": "kraken-auto-invest",
+  "version": "1.0.0",
+  "description": "Auto invest on Kraker cryptocurrency exchange",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bernardoosthuizen/kraken-auto-invest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bernardoosthuizen/kraken-auto-invest/issues"
+  },
+  "homepage": "https://github.com/bernardoosthuizen/kraken-auto-invest#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "got": "^12.0.1",
+    "kraken-api": "^1.0.1",
+    "qs": "^6.10.3"
+  }
+}
