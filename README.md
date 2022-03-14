@@ -10,8 +10,6 @@ Clone down this repository. You will need `node` and `npm` installed globally on
 
 Installation:
 
-Node.js (v16) is required to run this bot.
-
 `npm install`   
 
 - Add .env file to root folder with KRAKEN_API_KEY and KRAKEN_PRIVATE_KEY variables. See https://support.kraken.com/hc/en-us/articles/360000919966-How-to-generate-an-API-key-pair- for more info.
