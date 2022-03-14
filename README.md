@@ -22,4 +22,4 @@ To run bot locally:
 `node index.js`  
 
 ### Reflections
-This project was more challenging than expected. Initially I intended not to use any helper packages. After going through their API documentation and other resources I realised for the time being I will need to use a helper package (npm-kraken-api). I was taken aback as to how unclear the API documentation was for me. I will continue building this project using the helper package and once I have a bit more experience I will redo this project as initially intended. This project has been a really good learning experience, which I enjoyed.
+This project was more challenging than expected. Initially, I intended not to use any helper packages. After going through their API documentation and other resources I realised for the time being I will need to use a helper package (npm-kraken-api). I was taken aback as to how unclear the API documentation was for me. Once I have a bit more experience I will redo this project as initially intended. This project has been a really good learning experience, which I enjoyed.
